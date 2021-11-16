@@ -7,7 +7,6 @@
 #include "SolutionGeneration.h"
 #include "Operator.h"
 #include "LocalSearch.h"
-#include "PathRelinking.h"
 #include "Grasp.h"
 #include "main.h"
 
@@ -23,7 +22,6 @@ class App{
         SolutionGeneration * solution_generator;
         vector< Operator * > operators;
         LocalSearch * local_search;
-        PathRelinking * path_relinking;
         GRASP * grasp;
         Solution sol;
 
@@ -38,7 +36,6 @@ class App{
         void create_solution_generator();
         void create_operators();
         void create_local_search();
-        void create_path_relinking();
         void create_and_execute_grasp();
         void finalize_timer();
         void show_results();

@@ -5,7 +5,6 @@
 #include "Instance.h"
 #include "SolutionGeneration.h"
 #include "LocalSearch.h"
-#include "PathRelinking.h"
 #include "Mapper.h"
 
 class GRASP{
@@ -14,7 +13,6 @@ class GRASP{
         int seed;
         SolutionGeneration * solution_generation;
         LocalSearch * local_search;
-        PathRelinking * path_relinking;
 
         vector< Vertice * > unused_vertices;
         Mapper previous_generate_solutions;
@@ -26,7 +24,7 @@ class GRASP{
         bool is_better( Solution sol, Solution best );
 
     public:
-        GRASP( int iterations, int seed, SolutionGeneration * solution_generation, LocalSearch * local_search, PathRelinking * path_relinking );
+        GRASP( int iterations, int seed, SolutionGeneration * solution_generation, LocalSearch * local_search );
         Solution execute();
         
 };

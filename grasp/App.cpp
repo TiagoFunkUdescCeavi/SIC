@@ -5,18 +5,12 @@
 #include "Grasp.h"
 #include "RandomGreedyGen_MinMax.h"
 #include "LocalSearchWithOperators.h"
-#include "PathRelinkingOperator.h"
 #include "ArgumentReader.h"
 #include "Operator.h"
-#include "OperatorFirstAdd.h"
-#include "OperatorRamdomAdd.h"
 #include "OperatorBestAdd.h"
 #include "OperatorBestSwap.h"
-#include "Operator2opt.h"
 #include "OperatorExchange.h"
 #include "OperatorRandomRemove.h"
-#include "OperatorWorstRemove.h"
-#include "OperatorRelocate.h"
 #include "OperatorEmpty.h"
 
 #include <iostream>
@@ -30,17 +24,13 @@ Operator * App::create_remove_operator(){
     double percentage = stod( this->argument_reader->getValue( "--removePercentage" ) );
     if( argument == "r" ){
         return new OperatorRandomRemove( percentage );
-    }else if( argument == "w" ){
-        return new OperatorWorstRemove( percentage );
     }
     throw runtime_error( "Remove Operator is invalid: " + argument );
 }
 
 Operator * App::create_shuffle_operator(){
     string argument = this->argument_reader->getValue( "--shuffleOperator" );
-    if( argument == "r" ){
-        return new OperatorRelocate();
-    }else if( argument == "e" ){
+    if( argument == "e" ){
         return new OperatorExchange();
     }
     throw runtime_error( "Shuffle Operator is invalid: " + argument );
@@ -48,11 +38,7 @@ Operator * App::create_shuffle_operator(){
 
 Operator * App::create_add_operator(){
     string argument = this->argument_reader->getValue( "--addOperator" );
-    if( argument == "r" ){
-        return new OperatorRandomAdd();
-    }else if( argument == "f" ){
-        return new OperatorFirstAdd();
-    }else if( argument == "b" ){
+    if( argument == "b" ){
         return new OperatorBestAdd();
     }
     throw runtime_error( "Create Operator is invalid: " + argument );
@@ -98,14 +84,9 @@ void App::create_local_search(){
     this->local_search = new LocalSearchWithOperators( this->operators );
 }
 
-void App::create_path_relinking(){
-    bool path = this->argument_reader->getValue("--path") == "y"? true : false; 
-    this->path_relinking = new PathRelinkingOperator( path );
-}
-
 void App::create_and_execute_grasp(){
     int iterations = stoi( this->argument_reader->getValue("--iterations") );
-    this->grasp = new GRASP( iterations, this->seed, this->solution_generator, this->local_search, this->path_relinking );
+    this->grasp = new GRASP( iterations, this->seed, this->solution_generator, this->local_search );
     this->sol = this->grasp->execute();
 }
 
@@ -124,7 +105,6 @@ App::App( ArgumentReader * ar ){
     this->argument_reader = ar;
     this->solution_generator = 0;
     this->local_search = 0;
-    this->path_relinking = 0;
     this->grasp = 0;
     this->initial_time = 0;
     this->final_time = 0;
@@ -137,7 +117,6 @@ void App::execute(){
     this->create_solution_generator();
     this->create_operators();
     this->create_local_search();
-    this->create_path_relinking();
     this->create_and_execute_grasp();
     this->finalize_timer();
     this->show_results();

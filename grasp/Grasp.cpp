@@ -2,12 +2,11 @@
 #include "main.h"
 #include "Utils.h"
 
-GRASP::GRASP( int iterations, int seed, SolutionGeneration * solution_generation, LocalSearch * local_search, PathRelinking * path_relinking ){
+GRASP::GRASP( int iterations, int seed, SolutionGeneration * solution_generation, LocalSearch * local_search ){
     this->iterations = iterations;
     this->seed = seed;
     this->solution_generation = solution_generation;
     this->local_search = local_search;
-    this->path_relinking = path_relinking;
     this->previous_generate_solutions.resize( SOLUTION_HASH_SIZE );
 }
 
@@ -32,13 +31,6 @@ Solution GRASP::apply_local_search( Solution sol ){
     Solution actual = this->local_search->execute( sol, this->unused_vertices );
     this->unused_vertices = this->local_search->get_unused_vertices();
     return actual;
-}
-
-Solution GRASP::apply_path_relinking( Solution sol, Solution best ){
-    if( best.get_total_time() != 0.0 ){
-        return this->path_relinking->execute( sol, best );
-    }
-    return sol;
 }
 
 bool GRASP::is_better( Solution sol, Solution best ){
