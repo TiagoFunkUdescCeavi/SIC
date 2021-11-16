@@ -14,7 +14,7 @@ execute_all(){
     done
 }
 
-n=5
-log=log.txt
+n=4
+log=log_2021_11_16.txt
 
 execute_all $n $log
