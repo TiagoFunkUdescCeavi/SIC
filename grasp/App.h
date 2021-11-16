@@ -8,7 +8,6 @@
 #include "Operator.h"
 #include "LocalSearch.h"
 #include "Grasp.h"
-#include "main.h"
 
 class App{
     private:

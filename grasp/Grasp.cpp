@@ -1,5 +1,5 @@
 #include "Grasp.h"
-#include "main.h"
+#include "Log.h"
 #include "Utils.h"
 
 GRASP::GRASP( int iterations, int seed, SolutionGeneration * solution_generation, LocalSearch * local_search ){
@@ -42,10 +42,7 @@ Solution GRASP::execute(){
     Solution best;
     srand( this->seed );
 
-    show_log( "Iterations:\n", 2);
-    for (int i = 0; i < this->iterations; i++){
-        show_log( std::to_string( i+1 ) + " of " + std::to_string( this->iterations ) + " " + std::to_string( (int) calcule_percentage( i, this->iterations ) ) + " %\n", 2 );
-        
+    for (int i = 0; i < this->iterations; i++){        
         actual = this->generate();
 
         if( !is_acepted( actual ) ) continue;
@@ -54,9 +51,8 @@ Solution GRASP::execute(){
 
         if( this->is_better( actual, best ) ){
             best = actual;
-            show_log( std::to_string( i+1 ) + " " + std::to_string( best.get_objetive_function() ) + "\n", 1 );
+            Log::instance()->log( std::to_string( i+1 ) + "-" + std::to_string( best.get_objetive_function() ) + ",", 1 );
         }
     }
-    show_log( "\n", 2 );
     return best;
 }

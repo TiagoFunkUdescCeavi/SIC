@@ -1,7 +1,6 @@
 #include "OperatorBestAdd.h"
 
 #include "Utils.h"
-#include "main.h"
 
 Solution OperatorBestAdd::realize_add( Solution sol ){
     this->is_added = false;
@@ -30,11 +29,8 @@ Solution OperatorBestAdd::realize_add( Solution sol ){
 
 Solution OperatorBestAdd::execute( Solution sol, vector< Vertice * > uv ){
     this->unused_vertices = shuffle_vertices( uv );
-    int count = 0;
     do{
         sol = this->realize_add( sol );
-        count++;
     }while( is_added );
-    show_log( "number of insertions: " + std::to_string( count ) + "\n", 3 );
     return sol;
 }

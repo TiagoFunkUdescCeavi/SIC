@@ -1,5 +1,4 @@
 #include "OperatorRandomRemove.h"
-#include "main.h"
 
 #include <vector>
 using std::vector;
@@ -47,7 +46,6 @@ Solution OperatorRandomRemove::execute( Solution sol, vector< Vertice * > unused
         for( int i = 0; i < n; i++ ){
             sol = this->remove( sol );
         }
-        show_log( "number of removes: " + std::to_string( n ) + "\n", 3 );   
     }
     return sol;
 }

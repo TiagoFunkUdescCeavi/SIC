@@ -12,6 +12,7 @@
 #include "OperatorExchange.h"
 #include "OperatorRandomRemove.h"
 #include "OperatorEmpty.h"
+#include "Log.h"
 
 #include <iostream>
 #include <map>
@@ -56,7 +57,7 @@ void App::create_seed(){
     random_device rd;
     this->seed = rd();
     // this->seed = stoi( this->argument_reader->getValue( "--seed" ) );
-    show_log( "seed: " + std::to_string( seed ) + "\n", 1 );
+    Log::instance()->log( std::to_string( seed ) + ";", 1 );
 }
 
 
@@ -64,7 +65,7 @@ void App::read_instance(){
     this->file = this->argument_reader->getValue( "--file" );
     InstanceReader ir( this->file );
     ir.read();
-    show_log( "file: " + this->file + "\n", 1 );
+    Log::instance()->log( this->file + ";", 1 );
 }
 
 void App::create_solution_generator(){
@@ -96,9 +97,11 @@ void App::finalize_timer(){
 }
 
 void App::show_results(){
-    show_log( this->sol.to_string(), 2 );
-    show_log( std::to_string( this->sol.get_objetive_function() ) + "\n", 0 );
-    show_log( std::to_string( this->total_time ) + " ms\n", 0 );
+    Log * log = Log::instance();
+    log->log( this->sol.to_string(), 2 );
+    log->log( std::to_string( this->sol.get_objetive_function() ) + ";", 0 );
+    log->log( std::to_string( this->total_time ) + ";", 0 );
+    log->show();
 }
 
 App::App( ArgumentReader * ar ){

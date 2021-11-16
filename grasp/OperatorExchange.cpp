@@ -1,5 +1,4 @@
 #include "OperatorExchange.h"
-#include "main.h"
 #include "Utils.h"
 
 Solution OperatorExchange::realize_operation( Solution sol ){
@@ -27,11 +26,8 @@ Solution OperatorExchange::realize_operation( Solution sol ){
 
 Solution OperatorExchange::execute( Solution s, vector< Vertice * > unused_vertices ){
     this->unused_vertices = unused_vertices;
-    int count = 0;
     do{
         s = this->realize_operation( s );
-        count++;
     }while( this->is_swaped );
-    show_log( "number of exchanges: " + std::to_string( count ) + "\n", 3 );
     return s;
 }

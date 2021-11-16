@@ -1,7 +1,6 @@
 #include "OperatorBestSwap.h"
 
 #include "Utils.h"
-#include "main.h"
 
 Solution OperatorBestSwap::realize_add( Solution sol ){
     this->is_added = false;
@@ -28,11 +27,8 @@ Solution OperatorBestSwap::realize_add( Solution sol ){
 
 Solution OperatorBestSwap::execute( Solution s, vector< Vertice * > uv ){
     this->unused_vertices = shuffle_vertices( uv );
-    int count = 0;
     do{
         s = this->realize_add( s );
-        count++;
     }while( this->is_added );
-    show_log( "number of swaps: " + std::to_string( count ) + "\n", 3 );
     return s;
 }

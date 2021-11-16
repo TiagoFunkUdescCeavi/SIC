@@ -1,11 +1,5 @@
 #include "main.h"
 
-void show_log( string s, int level ){
-    if( level <= LOG_LEVEL ){
-        cout << s;
-    }
-}
-
 #if DEBUG == true
 
 #include "tests/test_solution.h"
