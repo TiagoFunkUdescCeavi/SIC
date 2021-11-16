@@ -326,6 +326,11 @@ int Solution::get_total_length_of_path(){
     return sum;
 }
 
+double Solution::get_objetive_function(){
+    double r = this->total_rewards - this->total_time;
+    return r;
+}
+
 string Solution::to_string(){
     string s;
     s = "number paths: " + std::to_string(this->paths.size()) + "\n";

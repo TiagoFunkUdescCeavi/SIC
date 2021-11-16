@@ -68,6 +68,7 @@ class Solution{
         int get_number_paths();
         int get_length_of_path( int path );
         int get_total_length_of_path();
+        double get_objetive_function();
 
         string to_string();
 

@@ -6,7 +6,7 @@ LocalSearchWithOperators::LocalSearchWithOperators( vector< Operator * > operato
 }
 
 bool LocalSearchWithOperators::is_better( Solution actual, Solution best ){
-    return best.get_total_rewards() < actual.get_total_rewards();
+    return best.get_objetive_function() < actual.get_objetive_function();
 }
 
 bool LocalSearchWithOperators::is_bigger( Solution sol ){
@@ -18,7 +18,7 @@ bool LocalSearchWithOperators::is_bigger( Solution sol ){
 }
 
 bool LocalSearchWithOperators::is_shorter( Solution actual, Solution best ){
-    bool result = best.get_total_rewards() == actual.get_total_rewards();
+    bool result = best.get_objetive_function() == actual.get_objetive_function();
     result = result && truncate( actual.get_total_time(), 2 ) < truncate( best.get_total_time(), 2 );
     return  result;
 }

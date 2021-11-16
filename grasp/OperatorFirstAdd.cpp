@@ -11,7 +11,7 @@ Solution OperatorFirstAdd::realize_add( Solution sol ){
         for (int j = 1; j < sol.get_length_of_path( i )-1; j++){
             for(unsigned int k = 0; k < this->unused_vertices.size(); k++ ){
                 if( actual.add( i, j, this->unused_vertices[ k ] ) ){
-                    if( best.get_total_rewards() < actual.get_total_rewards() ){
+                    if( best.get_objetive_function() < actual.get_objetive_function() ){
                         this->is_added = true;
                         best = actual;
                         this->unused_vertices.erase( this->unused_vertices.begin() + k );

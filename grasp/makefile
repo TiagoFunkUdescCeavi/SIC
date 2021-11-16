@@ -1,4 +1,3 @@
-
 # Name of the project
 PROJ_NAME=GRASP
 
@@ -20,7 +19,7 @@ CC=g++
 # Flags for compiler
 CC_FLAGS=-c -W -Wall
 
-INSTANCE=../../TOP_GRASP_TS_PR/instances/set_1_2/p1.2.b.txt
+INSTANCE=../../TOP_GRASP_TS_PR/instances/set_1_2/p1.2.n.txt
 SEED=1011742676
 PROGRAM_ARGS=--alpha 0.9 --iterations 4500 --path y --margin 1.9 --removeOperator r --removePercentage 0.15 --shuffleOperator e --addOperator b
 

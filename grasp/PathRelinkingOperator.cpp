@@ -25,13 +25,13 @@ Solution PathRelinkingOperator::execute( Solution start, Solution end ){
             Vertice * v = destiny.get_vertice_in_path( i, j );
             if( j < actual.get_length_of_path( i )-1 ){
                 if( actual.rewrite( i, j, v ) ){
-                    if( best.get_total_rewards() < actual.get_total_rewards() ){
+                    if( best.get_objetive_function() < actual.get_objetive_function() ){
                         best = actual;
                     }
                 }
             }else{
                 if( actual.add( i, v ) ){
-                    if( best.get_total_rewards() < actual.get_total_rewards() ){
+                    if( best.get_objetive_function() < actual.get_objetive_function() ){
                         best = actual;
                     }
                 }

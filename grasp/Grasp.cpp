@@ -42,7 +42,7 @@ Solution GRASP::apply_path_relinking( Solution sol, Solution best ){
 }
 
 bool GRASP::is_better( Solution sol, Solution best ){
-    return sol.get_total_rewards() > best.get_total_rewards();
+    return sol.get_objetive_function() > best.get_objetive_function();
 }
 
 Solution GRASP::execute(){
@@ -62,7 +62,7 @@ Solution GRASP::execute(){
 
         if( this->is_better( actual, best ) ){
             best = actual;
-            show_log( std::to_string( i+1 ) + " " + std::to_string( best.get_total_rewards() ) + "\n", 1 );
+            show_log( std::to_string( i+1 ) + " " + std::to_string( best.get_objetive_function() ) + "\n", 1 );
         }
     }
     show_log( "\n", 2 );
