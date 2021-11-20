@@ -54,5 +54,6 @@ Solution GRASP::execute(){
             Log::instance()->log( std::to_string( i+1 ) + "-" + std::to_string( best.get_objetive_function() ) + ",", 1 );
         }
     }
+    Log::instance()->log( ";", 1 );
     return best;
 }
