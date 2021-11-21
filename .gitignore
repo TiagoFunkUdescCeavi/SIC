@@ -31,7 +31,8 @@
 *.out
 *.app
 
-GRASP
+APP
+DEBUG
 /irace/target-runner
 process
 logger

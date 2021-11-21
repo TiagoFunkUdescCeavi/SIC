@@ -1,5 +1,5 @@
 # Name of the project
-PROJ_NAME=GRASP
+PROJ_NAME=APP
 
 # wildcard pega todos os arquivos com .cpp
 CPP_SOURCE=$(wildcard *.cpp)
@@ -19,12 +19,12 @@ CC=g++
 # Flags for compiler
 CC_FLAGS=-c -W -Wall
 
-INSTANCE=../../TOP_GRASP_TS_PR/instances/set_1_2/p1.2.n.txt
+INSTANCE=../instances/p1.2.m.txt
 SEED=1011742676
-PROGRAM_ARGS=--alpha 0.9 --iterations 4500 --path y --margin 1.9 --removeOperator r --removePercentage 0.15 --shuffleOperator e --addOperator b
+PROGRAM_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --path y --margin 1.9 --removeOperator r --removePercentage 0.15 --shuffleOperator e --addOperator b
 
 
-all: $(PROJ_NAME) run
+all: $(PROJ_NAME)
 
 build: clean $(PROJ_NAME)
 
