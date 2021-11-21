@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${workspaceRoot}/project/DEBUG",
             //"args": ["1234", "1", "241161500", "${workspaceRoot}/instances/p1.2.c.txt", "--algorithm", "grasp", "--alpha", "0.9", "--iterations", "4500", "--margin", "1.9", "--removeOperator", "random", "--removePercentage", "0.15", "--shuffleOperator", "exchange", "--addOperator", "best" ],
-            "args": ["1", "1", "241161500", "${workspaceRoot}/instances/p1.2.c.txt", "--algorithm", "genetic", "--alpha", "0.9", "--margin", "1.9" ],
+            "args": ["1", "1", "241161500", "${workspaceRoot}/instances/p1.2.c.txt", "--algorithm", "genetic", "--alpha", "0.9", "--margin", "1.9", "--iterations", "5000", "--populationSize", "30" ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

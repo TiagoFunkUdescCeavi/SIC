@@ -13,6 +13,8 @@ SolutionGeneration * GeneticBuilder::create_solution_generator(){
 }
 
 GeneticAlgorithm GeneticBuilder::create(){
-    GeneticAlgorithm ga( this->seed, this->create_solution_generator() );
+    int iterations = stoi( this->argument_reader->getValue( ARG_ITERATIONS ) );
+    int population_size = stoi( this->argument_reader->getValue( ARG_POPULATION_SIZE ) );
+    GeneticAlgorithm ga( this->seed, iterations, population_size, this->create_solution_generator() );
     return ga;
 }

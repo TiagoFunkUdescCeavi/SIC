@@ -50,9 +50,9 @@ void App::finalize_timer(){
 
 void App::show_results(){
     Log * log = Log::instance();
-    log->log( this->sol.to_string(), 2 );
     log->log( std::to_string( this->sol.get_objetive_function() ) + ";", 0 );
     log->log( std::to_string( this->total_time ) + ";", 0 );
+    log->log( "\n" + this->sol.to_string(), 0 );
     log->show();
 }
 

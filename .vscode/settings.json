@@ -54,6 +54,7 @@
         "locale": "cpp",
         "queue": "cpp",
         "sstream": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "cinttypes": "cpp"
     }
 }
