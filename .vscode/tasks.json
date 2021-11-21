@@ -6,9 +6,9 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
-                "${workspaceFolder}/grasp/*.cpp",
+                "${workspaceFolder}/project/*.cpp",
                 "-o",
-                "${workspaceFolder}/grasp/DEBUG"
+                "${workspaceFolder}/project/DEBUG"
             ],
             "options": {
                 "cwd": "${fileDirname}"

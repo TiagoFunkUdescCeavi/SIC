@@ -9,7 +9,7 @@
             "name": "g++ - Criar e depurar o arquivo ativo",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/grasp/DEBUG",
+            "program": "${workspaceRoot}/project/DEBUG",
             "args": ["1234", "1", "241161500", "${workspaceRoot}/instances/p1.2.c.txt", "--algorithm", "grasp", "--alpha", "0.9", "--iterations", "4500", "--path", "y", "--margin", "1.9", "--removeOperator", "r", "--removePercentage", "0.15", "--shuffleOperator", "e", "--addOperator", "b" ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
