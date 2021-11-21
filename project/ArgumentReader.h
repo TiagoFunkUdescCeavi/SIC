@@ -11,6 +11,7 @@ using namespace std;
 
 #define ARG_ALGORITHM 					"--algorithm"
 #define ARG_ALGORITHM_GRASP				"grasp"
+#define ARG_ALGORITHM_GENETIC			"genetic"
 
 #define ARG_REMOVE_OPERATOR 			"--removeOperator"
 #define ARG_REMOVE_OPERATOR_RANDOM		"random"

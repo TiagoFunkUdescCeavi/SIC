@@ -5,6 +5,7 @@
 #include "ArgumentReader.h"
 #include "Log.h"
 #include "GraspBuilder.h"
+#include "GeneticBuilder.h"
 
 #include <iostream>
 #include <map>
@@ -34,6 +35,11 @@ void App::create_and_execute_algorithm(){
     if( this->argument_reader->getValue( ARG_ALGORITHM ) == ARG_ALGORITHM_GRASP ){
         GraspBuilder g( this->seed, this->argument_reader );
         this->sol = g.create().execute();
+    } else if( this->argument_reader->getValue( ARG_ALGORITHM ) == ARG_ALGORITHM_GENETIC ){
+        GeneticBuilder g( this->seed, this->argument_reader );
+        this->sol = g.create().execute();
+    }else{
+        throw runtime_error("algorithm value is invalid: "+ this->argument_reader->getValue( ARG_ALGORITHM ) );
     }
 }
 

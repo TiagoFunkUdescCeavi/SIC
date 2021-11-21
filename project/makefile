@@ -19,10 +19,10 @@ CC=g++
 # Flags for compiler
 CC_FLAGS=-c -W -Wall
 
-INSTANCE=../instances/p1.2.m.txt
-SEED=1011742676
-PROGRAM_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --margin 1.9 --removeOperator random --removePercentage 0.15 --shuffleOperator exchange --addOperator best
-
+INSTANCE=../instances/p1.2.c.txt
+SEED=1
+#PROGRAM_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --margin 1.9 --removeOperator random --removePercentage 0.15 --shuffleOperator exchange --addOperator best
+PROGRAM_ARGS=--algorithm genetic --alpha 0.9 --margin 1.9
 
 all: $(PROJ_NAME)
 
