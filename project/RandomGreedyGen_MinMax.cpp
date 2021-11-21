@@ -148,6 +148,7 @@ Solution RandomGreedyGen_MinMax::random_greedy_generation( vector< Vertice * > v
         }
     }while( is_added );
 
+    sol.update_time_per_path( Instance::instance()->get_time_per_path() );
     return sol;
 }
 
