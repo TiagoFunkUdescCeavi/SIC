@@ -21,7 +21,7 @@ CC_FLAGS=-c -W -Wall
 
 INSTANCE=../instances/p1.2.m.txt
 SEED=1011742676
-PROGRAM_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --path y --margin 1.9 --removeOperator r --removePercentage 0.15 --shuffleOperator e --addOperator b
+PROGRAM_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --margin 1.9 --removeOperator random --removePercentage 0.15 --shuffleOperator exchange --addOperator best
 
 
 all: $(PROJ_NAME)

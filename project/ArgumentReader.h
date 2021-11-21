@@ -6,6 +6,26 @@
 
 using namespace std;
 
+#define ARG_SEED						"--seed"
+#define ARG_FILE 						"--file"
+
+#define ARG_ALGORITHM 					"--algorithm"
+#define ARG_ALGORITHM_GRASP				"grasp"
+
+#define ARG_REMOVE_OPERATOR 			"--removeOperator"
+#define ARG_REMOVE_OPERATOR_RANDOM		"random"
+#define ARG_REMOVE_PERCENTAGE 			"--removePercentage"
+
+#define ARG_SHUFFLE_OPERATOR 			"--shuffleOperator"
+#define ARG_SHUFFLE_OPERATOR_EXCHANGE	"exchange"
+
+#define ARG_ADD_OPERATOR 				"--addOperator"
+#define ARG_ADD_OPERATOR_BEST	 		"best"
+
+#define ARG_ALPHA 						"--alpha"
+#define ARG_MARGIN 						"--margin"
+#define ARG_ITERATIONS 					"--iterations"
+
 struct Argument{
 	string name;
 	string value;

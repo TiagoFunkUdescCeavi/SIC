@@ -10,25 +10,25 @@
 #include "LocalSearchWithOperators.h"
 
 Operator * GraspBuilder::create_remove_operator(){
-    string argument = this->argument_reader->getValue( "--removeOperator" );
-    double percentage = stod( this->argument_reader->getValue( "--removePercentage" ) );
-    if( argument == "r" ){
+    string argument = this->argument_reader->getValue( ARG_REMOVE_OPERATOR );
+    double percentage = stod( this->argument_reader->getValue( ARG_REMOVE_PERCENTAGE ) );
+    if( argument == ARG_REMOVE_OPERATOR_RANDOM ){
         return new OperatorRandomRemove( percentage );
     }
     throw runtime_error( "Remove Operator is invalid: " + argument );
 }
 
 Operator * GraspBuilder::create_shuffle_operator(){
-    string argument = this->argument_reader->getValue( "--shuffleOperator" );
-    if( argument == "e" ){
+    string argument = this->argument_reader->getValue( ARG_SHUFFLE_OPERATOR );
+    if( argument == ARG_SHUFFLE_OPERATOR_EXCHANGE ){
         return new OperatorExchange();
     }
     throw runtime_error( "Shuffle Operator is invalid: " + argument );
 }
 
 Operator * GraspBuilder::create_add_operator(){
-    string argument = this->argument_reader->getValue( "--addOperator" );
-    if( argument == "b" ){
+    string argument = this->argument_reader->getValue( ARG_ADD_OPERATOR );
+    if( argument == ARG_ADD_OPERATOR_BEST ){
         return new OperatorBestAdd();
     }
     throw runtime_error( "Create Operator is invalid: " + argument );
@@ -39,8 +39,8 @@ Operator * GraspBuilder::create_swap_operator(){
 }
 
 void GraspBuilder::create_solution_generator(){
-    double alpha = stod( this->argument_reader->getValue( "--alpha" ) );
-    double margin = stod( this->argument_reader->getValue( "--margin" ) );
+    double alpha = stod( this->argument_reader->getValue( ARG_ALPHA ) );
+    double margin = stod( this->argument_reader->getValue( ARG_MARGIN ) );
     this->solution_generator = new RandomGreedyGen_MinMax( alpha, margin );
 }
 
@@ -66,7 +66,7 @@ GRASP GraspBuilder::create(){
     this->create_solution_generator();
     this->create_operators();
     this->create_local_search();
-    int iterations = stoi( this->argument_reader->getValue("--iterations") );
+    int iterations = stoi( this->argument_reader->getValue( ARG_ITERATIONS ) );
     GRASP grasp( iterations, this->seed, this->solution_generator, this->local_search );
     return grasp;
 }

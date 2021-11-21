@@ -19,19 +19,19 @@ void App::initialize_timer(){
 void App::create_seed(){
     random_device rd;
     this->seed = rd();
-    // this->seed = stoi( this->argument_reader->getValue( "--seed" ) );
+    // this->seed = stoi( this->argument_reader->getValue( ARG_SEED ) );
     Log::instance()->log( std::to_string( seed ) + ";", 1 );
 }
 
 void App::read_instance(){
-    this->file = this->argument_reader->getValue( "--file" );
+    this->file = this->argument_reader->getValue( ARG_FILE );
     InstanceReader ir( this->file );
     ir.read();
     Log::instance()->log( this->file + ";", 1 );
 }
 
 void App::create_and_execute_algorithm(){
-    if( this->argument_reader->getValue("--algorithm") == "grasp" ){
+    if( this->argument_reader->getValue( ARG_ALGORITHM ) == ARG_ALGORITHM_GRASP ){
         GraspBuilder g( this->seed, this->argument_reader );
         this->sol = g.create().execute();
     }
