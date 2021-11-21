@@ -326,7 +326,7 @@ int Solution::get_total_length_of_path(){
     return sum;
 }
 
-double Solution::get_objetive_function(){
+double Solution::get_fitness(){
     double r = this->total_rewards - this->total_time;
     return r;
 }

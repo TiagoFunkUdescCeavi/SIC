@@ -33,7 +33,7 @@ Solution GRASP::apply_local_search( Solution sol ){
 }
 
 bool GRASP::is_better( Solution sol, Solution best ){
-    return sol.get_objetive_function() > best.get_objetive_function();
+    return sol.get_fitness() > best.get_fitness();
 }
 
 Solution GRASP::execute(){
@@ -50,7 +50,7 @@ Solution GRASP::execute(){
 
         if( this->is_better( actual, best ) ){
             best = actual;
-            Log::instance()->log( std::to_string( i+1 ) + "-" + std::to_string( best.get_objetive_function() ) + ",", 1 );
+            Log::instance()->log( std::to_string( i+1 ) + "-" + std::to_string( best.get_fitness() ) + ",", 1 );
         }
     }
     Log::instance()->log( ";", 1 );

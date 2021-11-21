@@ -19,11 +19,11 @@ vector< Solution > GeneticAlgorithm::create_population(){
 }
 int GeneticAlgorithm::find_best( vector< Solution > population ){
     int position_best = 0;
-    double fitness_best = population[ 0 ].get_objetive_function();
+    double fitness_best = population[ 0 ].get_fitness();
     double actual_fitness = 0.0;
 
     for( unsigned int i = 0; i < population.size(); i++ ){
-        actual_fitness = population[ i ].get_objetive_function();
+        actual_fitness = population[ i ].get_fitness();
         if( fitness_best < actual_fitness ){
             fitness_best = actual_fitness;
             position_best = i;
@@ -46,7 +46,7 @@ Solution GeneticAlgorithm::execute(){
         int position_new_best = this->find_best( population );
         Solution new_best = population[ position_new_best ];
 
-        if( best.get_objetive_function() < new_best.get_objetive_function() ){
+        if( best.get_fitness() < new_best.get_fitness() ){
             best = new_best;
         }
     }

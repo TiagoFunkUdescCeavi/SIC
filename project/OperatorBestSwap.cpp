@@ -12,7 +12,7 @@ Solution OperatorBestSwap::realize_add( Solution sol ){
                 Vertice * old_vertice = actual.get_vertice_in_path( i, j );
                 Vertice * new_vertice = this->unused_vertices[ k ];
                 if( actual.rewrite( i, j, new_vertice ) ){
-                    if( best.get_objetive_function() < actual.get_objetive_function() ){
+                    if( best.get_fitness() < actual.get_fitness() ){
                         best = actual;
                         this->unused_vertices[ k ] = old_vertice;
                         this->is_added = true;
