@@ -17,18 +17,6 @@ Solution RandomGreedyGen_MinMax::initialize_solution( int number_of_paths, doubl
     return sol;
 }
 
-Solution * RandomGreedyGen_MinMax::remove_excess( Solution * sol ){
-    for( int i = 0; i < sol->get_number_paths(); i++ ){
-        while( time_per_path < sol->get_time_path( i ) ){
-            int position = rand() % ( sol->get_length_of_path( i )-2 ) + 1;
-            Vertice * v = sol->get_vertice_in_path( i, position );
-            sol->remove( i, position );
-            this->unused_vertices.push_back( v );
-        }
-    }
-    return sol;
-}
-
 double * RandomGreedyGen_MinMax::get_scores( vector< Vertice * > vertices ){
     double * scores = new double[ vertices.size() ];
     for( unsigned int i = 0; i < vertices.size(); i++ ){

@@ -22,7 +22,6 @@ class RandomGreedyGen_MinMax: public SolutionGeneration{
         vector< Vertice * > unused_vertices;
 
         Solution initialize_solution( int number_of_paths, double time_per_path, Vertice * initial, Vertice * final );
-        Solution * remove_excess( Solution * sol );
         double * get_scores( vector< Vertice * > vertices );
         double * get_distances( vector< score_point > sp );
 
