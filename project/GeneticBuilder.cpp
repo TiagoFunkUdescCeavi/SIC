@@ -1,5 +1,6 @@
 #include "GeneticBuilder.h"
 #include "RandomGreedyGen_MinMax.h"
+#include "ProbabilisticSelection.h"
 
 GeneticBuilder::GeneticBuilder( int seed, ArgumentReader * argument_reader ){
     this->seed = seed;
@@ -12,9 +13,14 @@ SolutionGeneration * GeneticBuilder::create_solution_generator(){
     return new RandomGreedyGen_MinMax( alpha, margin );
 }
 
+Selection * GeneticBuilder::create_selection(){
+    double rate = stod( this->argument_reader->getValue( ARG_RATE ) );
+    return new ProbabilisticSelection( rate );
+}
+
 GeneticAlgorithm GeneticBuilder::create(){
     int iterations = stoi( this->argument_reader->getValue( ARG_ITERATIONS ) );
     int population_size = stoi( this->argument_reader->getValue( ARG_POPULATION_SIZE ) );
-    GeneticAlgorithm ga( this->seed, iterations, population_size, this->create_solution_generator() );
+    GeneticAlgorithm ga( this->seed, iterations, population_size, this->create_solution_generator(), this->create_selection() );
     return ga;
 }

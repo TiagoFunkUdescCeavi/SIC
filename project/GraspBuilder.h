@@ -1,3 +1,6 @@
+#ifndef GRASP_BUILDER_H
+#define GRASP_BUILDER_H
+
 #include "SolutionGeneration.h"
 #include "Operator.h"
 #include "LocalSearch.h"
@@ -25,3 +28,5 @@ class GraspBuilder{
         GraspBuilder( int seed, ArgumentReader * argument_reader );
         GRASP create();
 };
+
+#endif

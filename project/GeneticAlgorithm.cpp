@@ -1,10 +1,11 @@
 #include "GeneticAlgorithm.h"
 
-GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator ){
+GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator, Selection * selection ){
     this->seed = seed;
     this->iterations = iterations;
     this->population_size = population_size;
     this->solution_generator = solution_generator;
+    this->selection = selection;
 }
 
 vector< Solution > GeneticAlgorithm::create_population(){
@@ -36,14 +37,17 @@ int GeneticAlgorithm::find_best( vector< Solution > population ){
 Solution GeneticAlgorithm::execute(){
     Solution best;
     vector< Solution > population;
+    vector< Solution > elite;
     
     srand( this->seed );
 
     population = this->create_population();
     
     for( int i = 0; i < this->iterations; i++ ){
-        if( i%100 == 0 ) cout << i << endl;
+        if( i % 100 == 0 ) cout << i << endl;
 
+        elite = this->selection->select( population );
+        
         int position_new_best = this->find_best( population );
         Solution new_best = population[ position_new_best ];
 

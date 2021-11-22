@@ -22,7 +22,7 @@ CC_FLAGS=-c -W -Wall
 INSTANCE=../instances/p1.2.c.txt
 SEED=1
 #PROGRAM_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --margin 1.9 --removeOperator random --removePercentage 0.15 --shuffleOperator exchange --addOperator best
-PROGRAM_ARGS=--algorithm genetic --alpha 0.9 --margin 1.9 --iterations 5000 --populationSize 30
+PROGRAM_ARGS=--algorithm genetic --alpha 0.9 --margin 1.0 --iterations 5000 --populationSize 30 --rate 0.3
 
 all: $(PROJ_NAME)
 

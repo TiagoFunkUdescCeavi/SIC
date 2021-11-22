@@ -27,6 +27,7 @@ using namespace std;
 #define ARG_MARGIN 						"--margin"
 #define ARG_ITERATIONS 					"--iterations"
 #define ARG_POPULATION_SIZE				"--populationSize"
+#define ARG_RATE						"--rate"
 
 struct Argument{
 	string name;
