@@ -28,7 +28,7 @@ all: $(PROJ_NAME)
 
 build: clean $(PROJ_NAME)
 
-test: clean_main $(PROJ_NAME) run_test
+test: $(PROJ_NAME) run_test
 
 $(PROJ_NAME): $(OBJ)
 	$(CC) -o $@ $^
@@ -40,11 +40,8 @@ $(PROJ_NAME): $(OBJ)
 	$(CC) -o $@ $< $(CC_FLAGS)
 
 # Esse é caso especial para main.c
-#main.o: main.cpp $(H_SOURCE)
-#	$(CC) -o $@ $< $(CC_FLAGS)
-
-clean_main:
-	rm main.o
+main.o: main.cpp $(H_SOURCE)
+	$(CC) -o $@ $< $(CC_FLAGS)
 
 clean:
 	rm -rf *.o $(PROJ_NAME) *~

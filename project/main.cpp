@@ -1,4 +1,5 @@
-#include "main.h"
+#define DEBUG false
+#define IRACE_CONSTANT -1
 
 #if DEBUG == true
 
