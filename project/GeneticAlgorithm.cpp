@@ -39,9 +39,10 @@ Solution GeneticAlgorithm::execute(){
     
     srand( this->seed );
 
+    population = this->create_population();
+    
     for( int i = 0; i < this->iterations; i++ ){
         if( i%100 == 0 ) cout << i << endl;
-        population = this->create_population();
 
         int position_new_best = this->find_best( population );
         Solution new_best = population[ position_new_best ];
