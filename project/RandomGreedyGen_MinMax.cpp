@@ -85,11 +85,11 @@ int RandomGreedyGen_MinMax::select_vertice_greedy( vector< RandomGreedyGen_MinMa
 
 int RandomGreedyGen_MinMax::select_vertice_random( vector< RandomGreedyGen_MinMax::score_point > sp ){
     int selected_position = -1;
-    double random_number = (double) rand() / RAND_MAX;
+    double number = random_number();
     double sum = 0.0;
     for( unsigned int i = 0; i < sp.size(); i++ ){
         sum += sp[ i ].probability;
-        if( random_number < sum ){
+        if( number < sum ){
             selected_position = i;
             break;
         }
