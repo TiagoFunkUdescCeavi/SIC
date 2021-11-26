@@ -17,7 +17,7 @@ double calculate_distance( Vertice * v1, Vertice * v2 );
 template< typename T >
 vector< T > shuffle( vector< T > list ){
     int n = 0;
-    T aux = 0;
+    T aux;
     for( unsigned int i = 0; i < list.size(); i++ ){
         n = rand() % list.size();
         aux = list[ i ];
