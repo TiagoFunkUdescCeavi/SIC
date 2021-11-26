@@ -24,8 +24,8 @@ TEST_DEPENDENCES=Solution.o Vertice.o Utils.o Mapper.o
 
 INSTANCE=../instances/p1.2.m.txt
 SEED=1
-#PROGRAM_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --margin 1.9 --removeOperator random --removePercentage 0.15 --shuffleOperator exchange --addOperator best
-PROGRAM_ARGS=--algorithm genetic --alpha 0.9 --margin 1.0 --iterations 5000 --populationSize 30 --rate 0.3
+GRASP_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --margin 1.9 --removeOperator random --removePercentage 0.15 --shuffleOperator exchange --addOperator best
+GENETIC_ARGS=--algorithm genetic --alpha 0.9 --margin 1.0 --iterations 5000 --populationSize 30 --rate 0.3
 
 all: $(PROJ_NAME)
 
@@ -53,5 +53,8 @@ main.o: main.cpp $(H_SOURCE)
 clean:
 	rm -rf *.o $(PROJ_NAME) *~
 
-run:
-	./$(PROJ_NAME) 1 1 $(SEED) $(INSTANCE) $(PROGRAM_ARGS)
+run_grasp:
+	./$(PROJ_NAME) 1 1 $(SEED) $(INSTANCE) $(GRASP_ARGS)
+
+run_genetic:
+	./$(PROJ_NAME) 1 1 $(SEED) $(INSTANCE) $(GENETIC_ARGS)
