@@ -26,7 +26,7 @@ Solution OperatorBestSwap::realize_add( Solution sol ){
 }
 
 Solution OperatorBestSwap::execute( Solution s, vector< Vertice * > uv ){
-    this->unused_vertices = shuffle_vertices( uv );
+    this->unused_vertices = shuffle( uv );
     do{
         s = this->realize_add( s );
     }while( this->is_added );

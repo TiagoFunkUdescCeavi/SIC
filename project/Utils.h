@@ -14,7 +14,18 @@ double calculate_score_z( double value, double mean, double stand );
 
 double calculate_distance( Vertice * v1, Vertice * v2 );
 
-vector< Vertice * > shuffle_vertices( vector< Vertice * > vertices );
+template< typename T >
+vector< T > shuffle( vector< T > list ){
+    int n = 0;
+    T aux = 0;
+    for( unsigned int i = 0; i < list.size(); i++ ){
+        n = rand() % list.size();
+        aux = list[ i ];
+        list[ i ] = list[ n ];
+        list[ n ] = aux;
+    }
+    return list;
+}
 
 double random_number();
 
