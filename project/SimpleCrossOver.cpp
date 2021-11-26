@@ -2,21 +2,6 @@
 #include "Instance.h"
 #include "Utils.h"
 
-vector< Solution > SimpleCrossOver::shuffle_population( vector< Solution > elite_population ){
-    int number = 0;
-    unsigned int size = elite_population.size();
-    Solution aux;
-
-    for( unsigned int i = 0; i < size; i++ ){
-        number = random_number();
-        aux = elite_population[ i ];
-        elite_population[ i ] = elite_population[ number ];
-        elite_population[ number ] = aux;
-    }
-
-    return elite_population;
-}
-
 Solution SimpleCrossOver::generate_kid_with_even_paths( Solution dad, Solution mom ){
     Instance * inst = Instance::instance();
     int paths = inst->get_number_of_paths();
@@ -61,7 +46,7 @@ vector< Solution > SimpleCrossOver::realize_crossover( vector< Solution > elite_
     bool is_even = Instance::instance()->get_number_of_paths() % 2 == 0;
     vector< Solution > new_elite_population;
     vector< Solution > kids;
-    elite_population = this->shuffle_population( elite_population );
+    elite_population = shuffle( elite_population );
     
     for( unsigned int i = 0; i < elite_population.size(); i += 2 ){
         if( is_even ){

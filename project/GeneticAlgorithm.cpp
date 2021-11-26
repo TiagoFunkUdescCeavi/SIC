@@ -56,7 +56,6 @@ Solution GeneticAlgorithm::execute(){
         population = this->replacement->realize_replacement( population, kids );
 
         Solution new_best = this->find_best( population );
-        //cout << new_best.to_string() << endl;
 
         if( best.get_fitness() < new_best.get_fitness() ){
             best = new_best;
