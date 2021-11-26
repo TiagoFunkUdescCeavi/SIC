@@ -18,6 +18,9 @@ CC=g++
 
 # Flags for compiler
 CC_FLAGS=-c -W -Wall
+TEST_FLAGS=-lrt -lm
+
+TEST_DEPENDENCES=Solution.o Vertice.o Utils.o Mapper.o
 
 INSTANCE=../instances/p1.2.c.txt
 SEED=1
@@ -28,7 +31,11 @@ all: $(PROJ_NAME)
 
 build: clean $(PROJ_NAME)
 
-test: $(PROJ_NAME) run_test
+test: $(TEST_DEPENDENCES)
+	rm -f tests/test.o
+	g++ tests/test.cpp -o tests/test.o -c $(TEST_FLAGS)
+	g++ tests/test.o -o tests/TEST $(TEST_DEPENDENCES)
+	./tests/TEST
 
 $(PROJ_NAME): $(OBJ)
 	$(CC) -o $@ $^
@@ -45,9 +52,6 @@ main.o: main.cpp $(H_SOURCE)
 
 clean:
 	rm -rf *.o $(PROJ_NAME) *~
-
-run_test:
-	./$(PROJ_NAME)
 
 run:
 	./$(PROJ_NAME) 1 1 $(SEED) $(INSTANCE) $(PROGRAM_ARGS)

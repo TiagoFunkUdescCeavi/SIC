@@ -33,6 +33,7 @@
 
 APP
 DEBUG
+TEST
 /irace/target-runner
 process
 logger

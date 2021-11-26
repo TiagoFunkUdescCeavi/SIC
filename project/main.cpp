@@ -1,17 +1,4 @@
-#define DEBUG false
 #define IRACE_CONSTANT -1
-
-#if DEBUG == true
-
-#include "tests/test_solution.h"
-
-int main(int argc, char *argv[]) {
-	MU_RUN_SUITE(test_suite_solution);
-	MU_REPORT();
-	return MU_EXIT_CODE;
-}
-
-#else
 
 #include "App.h"
 #include "ArgumentReader.h"
@@ -29,5 +16,3 @@ int main( int argc, char * argv[] ){
     }
     return 0;
 }
-
-#endif
