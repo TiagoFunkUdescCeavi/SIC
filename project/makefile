@@ -22,7 +22,7 @@ TEST_FLAGS=-lrt -lm
 
 TEST_DEPENDENCES=Solution.o Vertice.o Utils.o Mapper.o
 
-INSTANCE=../instances/p1.2.c.txt
+INSTANCE=../instances/p1.2.m.txt
 SEED=1
 #PROGRAM_ARGS=--algorithm grasp --alpha 0.9 --iterations 4500 --margin 1.9 --removeOperator random --removePercentage 0.15 --shuffleOperator exchange --addOperator best
 PROGRAM_ARGS=--algorithm genetic --alpha 0.9 --margin 1.0 --iterations 5000 --populationSize 30 --rate 0.3

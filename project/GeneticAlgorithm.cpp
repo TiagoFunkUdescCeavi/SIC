@@ -1,11 +1,12 @@
 #include "GeneticAlgorithm.h"
 
-GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator, Selection * selection ){
+GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator, Selection * selection, CrossOver * crossover ){
     this->seed = seed;
     this->iterations = iterations;
     this->population_size = population_size;
     this->solution_generator = solution_generator;
     this->selection = selection;
+    this->crossover = crossover;
 }
 
 vector< Solution > GeneticAlgorithm::create_population(){
@@ -18,7 +19,8 @@ vector< Solution > GeneticAlgorithm::create_population(){
 
     return population;
 }
-int GeneticAlgorithm::find_best( vector< Solution > population ){
+
+Solution GeneticAlgorithm::find_best( vector< Solution > population ){
     int position_best = 0;
     double fitness_best = population[ 0 ].get_fitness();
     double actual_fitness = 0.0;
@@ -31,13 +33,14 @@ int GeneticAlgorithm::find_best( vector< Solution > population ){
         }
     }
 
-    return position_best;
+    return population[ position_best ];
 }
 
 Solution GeneticAlgorithm::execute(){
     Solution best;
     vector< Solution > population;
     vector< Solution > elite;
+    vector< Solution > kids;
     
     srand( this->seed );
 
@@ -47,9 +50,10 @@ Solution GeneticAlgorithm::execute(){
         if( i % 100 == 0 ) cout << i << endl;
 
         elite = this->selection->select( population );
-        
-        int position_new_best = this->find_best( population );
-        Solution new_best = population[ position_new_best ];
+        kids = this->crossover->realize_crossover( elite );
+
+        Solution new_best = this->find_best( kids );
+        //cout << new_best.to_string() << endl;
 
         if( best.get_fitness() < new_best.get_fitness() ){
             best = new_best;

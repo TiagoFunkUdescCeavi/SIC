@@ -1,6 +1,7 @@
 #include "GeneticBuilder.h"
 #include "RandomGreedyGen_MinMax.h"
 #include "ProbabilisticSelection.h"
+#include "SimpleCrossOver.h"
 
 GeneticBuilder::GeneticBuilder( int seed, ArgumentReader * argument_reader ){
     this->seed = seed;
@@ -18,9 +19,13 @@ Selection * GeneticBuilder::create_selection(){
     return new ProbabilisticSelection( rate );
 }
 
+CrossOver * GeneticBuilder::create_crossover(){
+    return new SimpleCrossOver();
+}
+
 GeneticAlgorithm GeneticBuilder::create(){
     int iterations = stoi( this->argument_reader->getValue( ARG_ITERATIONS ) );
     int population_size = stoi( this->argument_reader->getValue( ARG_POPULATION_SIZE ) );
-    GeneticAlgorithm ga( this->seed, iterations, population_size, this->create_solution_generator(), this->create_selection() );
+    GeneticAlgorithm ga( this->seed, iterations, population_size, this->create_solution_generator(), this->create_selection(), this->create_crossover() );
     return ga;
 }
