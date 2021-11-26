@@ -264,8 +264,9 @@ bool Solution::move( int path1, int position1, int path2, int position2 ){
 }
 
 bool Solution::is_empty( int path ){
-    if( check_if_path_is_valid( path ) ) return true;
-    return this->paths[ path ].size() != 2;
+    if( check_if_path_is_valid( path ) ) throw runtime_error( "path is invalid on is_empty\n" );
+    if( this->paths[ path ].size() < 2 ) throw runtime_error( "path length is less than two.\n" );
+    return this->paths[ path ].size() == 2;
 }
 
 Vertice * Solution::get_last_path_vertice_in_path( int path ){

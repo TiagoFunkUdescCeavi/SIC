@@ -352,6 +352,64 @@ MU_TEST(solution_swap_fail_2){
     mu_assert_double_eq( sol.get_total_time(), 10.8453 ); 
 }
 
+MU_TEST( solution_is_empty ){
+    Vertice initial( 1.0, 1.0, 0 );
+    Vertice final( 2.0, 2.0, 0 );
+    Vertice v1( 2.3, 4.5, 1 );
+    Vertice v2( 1.8, 2.1, 2 );
+    Solution sol( 2, 9.0 );
+    for( int i = 0; i < 2; i++ ){
+        sol.add_initial_and_final_vertice( i, &initial, &final );
+    }
+
+    mu_check( sol.is_empty( 0 ) == true );
+    mu_check( sol.is_empty( 1 ) == true );
+
+    sol.add( 0, &v1 );
+    mu_check( sol.is_empty( 0 ) == false );
+    mu_check( sol.is_empty( 1 ) == true );
+
+    sol.add( 1, &v2 );
+    mu_check( sol.is_empty( 0 ) == false );
+    mu_check( sol.is_empty( 1 ) == false );
+
+    sol.remove( 0, 1 );
+    mu_check( sol.is_empty( 0 ) == true );
+    mu_check( sol.is_empty( 1 ) == false );
+
+    sol.remove( 1, 1 );
+    mu_check( sol.is_empty( 0 ) == true );
+    mu_check( sol.is_empty( 1 ) == true );
+}
+
+MU_TEST(solution_is_empty_exceptions){
+    Vertice initial( 1.0, 1.0, 0 );
+    Vertice final( 2.0, 2.0, 0 );
+    Solution sol( 2, 7.0 );
+
+    try{
+        sol.is_empty( 0 );
+        mu_fail("exception is not throw with solution empty");
+    }catch(exception &e ){
+    }
+
+    for( int i = 0; i < 2; i++ ){
+        sol.add_initial_and_final_vertice( i, &initial, &final );
+    }
+    
+    try{
+        sol.is_empty( -1 );
+        mu_fail("Invalid position: -1");
+    }catch(exception &e ){
+    }
+
+    try{
+        sol.is_empty( 10 );
+        mu_fail("Invalid position: 10");
+    }catch(exception &e ){
+    }
+}
+
 MU_TEST_SUITE(test_suite_solution) {
 	MU_SUITE_CONFIGURE(&test_setup, &test_teardown);
 
@@ -367,6 +425,8 @@ MU_TEST_SUITE(test_suite_solution) {
     MU_RUN_TEST( solution_swap_sucess );
     MU_RUN_TEST( solution_swap_fail );
     MU_RUN_TEST( solution_swap_fail_2 );
+    MU_RUN_TEST( solution_is_empty );
+    MU_RUN_TEST( solution_is_empty_exceptions );
 }
 
 #endif
