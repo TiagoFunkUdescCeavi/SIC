@@ -6,6 +6,7 @@
 #include "GeneticAlgorithm.h"
 #include "Selection.h"
 #include "CrossOver.h"
+#include "Replacement.h"
 
 class GeneticBuilder{
     private:
@@ -15,6 +16,7 @@ class GeneticBuilder{
         SolutionGeneration * create_solution_generator();
         Selection * create_selection();
         CrossOver * create_crossover();
+        Replacement * create_replacement();
 
     public:
         GeneticBuilder( int seed, ArgumentReader * argument_reader );

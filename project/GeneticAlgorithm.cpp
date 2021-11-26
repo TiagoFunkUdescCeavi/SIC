@@ -1,12 +1,13 @@
 #include "GeneticAlgorithm.h"
 
-GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator, Selection * selection, CrossOver * crossover ){
+GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator, Selection * selection, CrossOver * crossover, Replacement * replacement ){
     this->seed = seed;
     this->iterations = iterations;
     this->population_size = population_size;
     this->solution_generator = solution_generator;
     this->selection = selection;
     this->crossover = crossover;
+    this->replacement = replacement;
 }
 
 vector< Solution > GeneticAlgorithm::create_population(){
@@ -52,7 +53,9 @@ Solution GeneticAlgorithm::execute(){
         elite = this->selection->select( population );
         kids = this->crossover->realize_crossover( elite );
 
-        Solution new_best = this->find_best( kids );
+        population = this->replacement->realize_replacement( population, kids );
+
+        Solution new_best = this->find_best( population );
         //cout << new_best.to_string() << endl;
 
         if( best.get_fitness() < new_best.get_fitness() ){
