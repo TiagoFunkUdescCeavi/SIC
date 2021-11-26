@@ -1,12 +1,13 @@
 #include "GeneticAlgorithm.h"
 
-GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator, Selection * selection, CrossOver * crossover, Replacement * replacement ){
+GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator, Selection * selection, CrossOver * crossover, Mutation * mutation, Replacement * replacement ){
     this->seed = seed;
     this->iterations = iterations;
     this->population_size = population_size;
     this->solution_generator = solution_generator;
     this->selection = selection;
     this->crossover = crossover;
+    this->mutation = mutation;
     this->replacement = replacement;
 }
 
@@ -46,12 +47,14 @@ Solution GeneticAlgorithm::execute(){
     srand( this->seed );
 
     population = this->create_population();
+
+    cout << 0 << endl;
     
     for( int i = 0; i < this->iterations; i++ ){
-        if( i % 100 == 0 ) cout << i << endl;
 
         elite = this->selection->select( population );
         kids = this->crossover->realize_crossover( elite );
+        kids = this->mutation->apply_mutation( kids );
 
         population = this->replacement->realize_replacement( population, kids );
 
@@ -59,6 +62,7 @@ Solution GeneticAlgorithm::execute(){
 
         if( best.get_fitness() < new_best.get_fitness() ){
             best = new_best;
+            cout << best.get_fitness() << endl;
         }
     }
 

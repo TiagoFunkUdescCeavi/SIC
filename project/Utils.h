@@ -27,6 +27,7 @@ vector< T > shuffle( vector< T > list ){
     return list;
 }
 
+int random_number( int max );
 double random_number();
 
 double calcule_percentage( int n, int total );

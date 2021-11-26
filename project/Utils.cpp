@@ -45,6 +45,10 @@ double calculate_distance( Vertice * v1, Vertice * v2 ){
     return sqrt( pow( x, 2 ) + pow( y, 2 ) );
 }
 
+int random_number( int max ){
+    return rand() % max;
+}
+
 double random_number(){
     return (double) rand() / RAND_MAX;
 }
