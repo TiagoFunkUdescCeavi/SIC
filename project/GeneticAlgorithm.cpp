@@ -1,4 +1,5 @@
 #include "GeneticAlgorithm.h"
+#include "Log.h"
 
 GeneticAlgorithm::GeneticAlgorithm( int seed, int iterations, int population_size, SolutionGeneration * solution_generator, Selection * selection, CrossOver * crossover, Mutation * mutation, LocalSearch * local_search, Replacement * replacement ){
     this->seed = seed;
@@ -86,11 +87,8 @@ Solution GeneticAlgorithm::execute(){
     srand( this->seed );
 
     population = this->create_population();
-
-    cout << 0.0 << endl;
     
     for( int i = 0; i < this->iterations; i++ ){
-        if( i % 100 == 0 ) cout << i << endl; 
         elite = this->selection->select( population );
         kids = this->crossover->realize_crossover( elite );
         kids = this->mutation->apply_mutation( kids );
@@ -101,9 +99,10 @@ Solution GeneticAlgorithm::execute(){
 
         if( best.get_fitness() < actual.get_fitness() ){
             best = actual;
-            cout << i << "-" << best.get_fitness() << endl;
+            Log::instance()->log( std::to_string( i+1 ) + "-" + std::to_string( best.get_fitness() ) + ",", 1 );
         }
     }
+    Log::instance()->log( ";", 1 );
 
     return best;
 }

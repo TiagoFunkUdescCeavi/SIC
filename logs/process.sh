@@ -2,5 +2,5 @@
 
 g++ process.cpp -o process
 
-rm "results.csv"
-./process "log_2021_11_16.csv" >> "results.csv"
+rm -f "results_2021_11_27.csv"
+./process "log_2021_11_27.csv" >> "results_2021_11_27.csv"
