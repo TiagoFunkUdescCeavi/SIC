@@ -40,6 +40,7 @@ Solution GeneticAlgorithm::find_best( vector< Solution > population ){
 
 Solution GeneticAlgorithm::execute(){
     Solution best;
+    Solution actual;
     vector< Solution > population;
     vector< Solution > elite;
     vector< Solution > kids;
@@ -48,21 +49,19 @@ Solution GeneticAlgorithm::execute(){
 
     population = this->create_population();
 
-    cout << 0 << endl;
+    cout << 0.0 << endl;
     
     for( int i = 0; i < this->iterations; i++ ){
-
         elite = this->selection->select( population );
         kids = this->crossover->realize_crossover( elite );
         kids = this->mutation->apply_mutation( kids );
 
         population = this->replacement->realize_replacement( population, kids );
+        actual = this->find_best( population );
 
-        Solution new_best = this->find_best( population );
-
-        if( best.get_fitness() < new_best.get_fitness() ){
-            best = new_best;
-            cout << best.get_fitness() << endl;
+        if( best.get_fitness() < actual.get_fitness() ){
+            best = actual;
+            cout << i << "-" << best.get_fitness() << endl;
         }
     }
 
