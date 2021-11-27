@@ -348,6 +348,7 @@ string Solution::to_string(){
     s += "time per path: " + std::to_string( this->time_per_path ) + "\n";
     s += "total reward: " + std::to_string( this->total_rewards ) + "\n";
     s += "total time: " + std::to_string( this->total_time ) + "\n";
+    s += "fitness: " +  std::to_string( this->get_fitness() ) + "\n";
     s += "hash: " + std::to_string( this->get_hash() ) + "\n";
     
     return s;
