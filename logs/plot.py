@@ -33,17 +33,18 @@ def seila( iterations, values ):
             new_values.append( values[ i-1 ] )
     return new_iterations, new_values
 
-def create_graphic( name: string ):
+def create_graphic( name: str, label: str ):
     iterations, values = read( name + ".csv" )
     iterations, values = seila( iterations, values )
-    plt.plot( iterations, values )
+    plt.plot( iterations, values, label=label )
 
 plt.xlabel("Iterações")
 plt.ylabel("Qualidade da solução")
 
-create_graphic( "4_2_m_grasp" )
-create_graphic( "4_2_m_ga" )
+create_graphic( "4_2_m_grasp", "GRASP" )
+create_graphic( "4_2_m_ga", "GA" )
 # create_graphic( "5_4_m" )
 
+plt.legend(loc="lower right")
 plt.savefig( "4_2_m.png" )
 plt.close()
